@@ -1,0 +1,15 @@
+[
+   {
+      "id": 1,
+      "name": "Matias",
+      "color": "red",
+      "email": "matiassabbadini24@gmail.com",
+      "edad": "45",
+      "password": "$2a$10$I7DBZmKxc33OsBHg/5q8auWbgN2bDb/5KEtLLt2Q5QqOWwYo2ds6a",
+      "password2": "$2a$10$TPwZnq4jZ1yyY4A/T2lV0.TtSDCuQZBED5yg0yHjeO4QE1Eb91G.O",
+      "rol": "user",
+      "avatar": [
+         "../images/avatar/imagenDefault.jpg"
+      ]
+   }
+]

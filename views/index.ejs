@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %> 
+
+<% if (user.color == 'orange') { %>
+    <body class="register" style="background-color: orange;">
+  <% } else if(user.color  == 'green'){ %>
+     <body class="register" style="background-color: green;">
+   <% } else if(user.color == 'red'){ %>
+    <body class="register" style="background-color: red;">
+    <% } else {%>
+        <body class="register" style="background-color: blue;">
+        <% }%>
+    <%- include('./partials/header') %> 
+    <div class="text-center">
+        <img class="img-fluid imagen-bienvenidos" src="../images/istockphoto-491141177-612x612.jpg"/>
+      </div>
+<br/>
+<h1 class="text-center">Tienes que loguearte</h1>
+<br/>
+<div class="text-center">
+    <div class="d-inline p-2 ">
+        <a href="/users/login">
+            <button type="submit" class="btn btn-primary btn-center">Logueate</button>
+        </a>
+    </div>
+    <div class="d-inline p-2 "><a href="/users/registro">
+        <button type="submit" class="btn btn-primary btn-center">Registrate</button>
+    </a>
+    </div>
+</div>
+
+</body>
+</html>

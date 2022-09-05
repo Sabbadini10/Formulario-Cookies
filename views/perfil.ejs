@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <%- include('./partials/head',{
+        title : 'Perfil de usuario'
+    })  %> 
+
+
+<% if (user.color === 'orange') { %>
+    <body class="register" style="background-color: orange;">
+  <% } else if(user.color  === 'green'){ %>
+     <body class="register" style="background-color: green;">
+   <% } else if(user.color === 'red'){ %>
+    <body class="register" style="background-color: red;">
+    <% } else {%>
+        <body class="register" style="background-color: blue;">
+        <% }%>
+
+    <%- include('./partials/header')  %> 
+
+    <main class="register__main">
+        <section class="register__main__section general__main__section">
+          <h1 class="text-center">Bienvenido <%= user.name %></h1>
+          <figure class="d-flex justify-content-center">
+                <img  src="../<%= user.avatar ? user.avatar : 'default.png' %>" alt="avatar" width="100px" style="border-radius: 50%;">
+          </figure>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label" for="nombre"> Tu nombre es:</label>
+                    <div class="col-sm-10">
+                    <h1 class="form-control"  id="name" autocomplete="off" name="name" value="<%= locals.old && old.name ? old.name : null %>"><%= user.name %></h1>
+                </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label" for="email">Tu email es:</label>
+                    <div class="col-sm-10">
+                    <h1 class="form-control" id="email" name="email" value="<%= locals.old && old.email ? old.email : null %>"> <%= user.email %></h1>
+                </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-2 col-form-label" for="edad">Tu edad es:</label>
+                    <div class="col-sm-10">
+                    <h1 class="form-control" id="edad" name="edad" value="<%= locals.old && old.edad ? old.edad: null %>"><%= user.edad%></h1>
+                </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">El color que elegiste es</label>
+                    <div class="col-sm-10">
+                    <h1 class="form-control" id="color" name="color" value="<%= locals.old && old.color ? old.color : null %>"><%= user.color%></h1>
+                </div>
+                </div>
+                <div class="d-flex gap-5 justify-content-center" role="group" aria-label="Basic example">
+                    <button type="reset" class="btn btn-danger">Cancelar Cambios</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+
+</html>

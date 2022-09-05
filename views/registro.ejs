@@ -1,0 +1,97 @@
+<html lang="es">
+
+    <%- include('./partials/head',{
+        title : 'Register'
+    })  %> 
+
+
+
+
+<% if (user.color === 'orange') { %>
+  <body class="register" style="background-color: orange;">
+<% } else if(user.color  === 'green'){ %>
+   <body class="register" style="background-color: green;">
+ <% } else if(user.color === 'red'){ %>
+  <body class="register" style="background-color: red;">
+  <% } else {%>
+      <body class="register" style="background-color: blue;">
+      <% }%>
+    <%- include('./partials/header')  %> 
+    <main class="register__main">
+        <h1 class="text-center">Registrate</h1>
+        <form action="" class="form" method="POST">
+        <div class="mb-3 row">
+            <label for="name" class="col-sm-2 col-form-label">Nombre</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="name" name="name" value="<%= locals.old && old.name ? old.name : null %>" placeholder="Jack Daniels">
+              <small class="form-text-error"><%= locals.errors && errors.name ? errors.name.msg :null %></small>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Color</label>
+            <div class="col-sm-10">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="color" value="<%= locals.old && old.color ? old.color : null %>">
+                    <option selected>Seleciona Color</option>
+                    <option value="orange">Naranja</option>
+                    <option value="green">Verde</option>
+                    <option value="red">Rojo</option>
+                  </select>
+            </div>
+           
+          
+          <div class="mb-3 row">
+            <label for="email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" name="email" id="email" value="<%= locals.old && old.email ? old.email : null %>" placeholder="JackDaniels@JackDaniels">
+              <small class="form-text-error"><%= locals.errors && errors.email ? errors.email.msg :null %></small>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Edad</label>
+            <div class="col-sm-10">
+              <input type="number" class="form-control" id="edad" name="edad" value="<%= locals.old && old.edad ? old.edad : null %>" placeholder="18">
+              <small class="form-text-error"><%= locals.errors && errors.edad ? errors.edad.msg :null %></small>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="password" name="password" value="<%= locals.old && old.password ? old.password : null %>" placeholder="1234">
+              <small class="form-text-error"><%= locals.errors && errors.password ? errors.password.msg :null %></small>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="password2" class="col-sm-2 col-form-label">Confirmar Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="password2" name="password2" value="<%= locals.old && old.password2 ? old.password2 : null %>">
+              <small class="form-text-error"><%= locals.errors && errors.password2 ? errors.password2.msg :null %></small>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
+            <div class="col-sm-10">
+              <input type="file" class="form-control" id="avatar" name="avatar" value="<%= locals.old && old.avatar ? old.avatar : null %>" placeholder="1234">
+              <small class="form-text-error"><%= locals.errors && errors.avatar ? errors.avatar.msg :null %></small>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="form-box-column">
+                <div class="form-box-flex">
+                    <input class="form-checkbox" type="checkbox" id="terminos" name="terms">
+                    <label class="form-label-small" for="terminos">Acepto los <a href="/terms" target="_blank">términos y condiciones</a></label>
+                </div>
+                <div class="form-box-flex">
+                    <small class="form-text-error"><%= locals.errors && errors.terms ? errors.terms.msg :null %></small>
+                </div>
+            </div>
+        </div>
+        <br>
+          <div class="d-flex gap-5 justify-content-center" role="group" aria-label="Basic example">
+          <button type="reset" class="btn btn-danger">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Registrate</button>
+          </div>
+          </form>
+    </main>
+</body>
+
+</html>
