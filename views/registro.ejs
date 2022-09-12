@@ -4,18 +4,16 @@
         title : 'Register'
     })  %> 
 
-
-
-
-<% if (user.color === 'orange') { %>
+<% if (locals.user && user.color == 'naranja') { %>
   <body class="register" style="background-color: orange;">
-<% } else if(user.color  === 'green'){ %>
+<% } else if(locals.user && user.color  == 'verde'){ %>
    <body class="register" style="background-color: green;">
- <% } else if(user.color === 'red'){ %>
+ <% } else if(locals.user && user.color == 'rojo'){ %>
   <body class="register" style="background-color: red;">
   <% } else {%>
-      <body class="register" style="background-color: blue;">
+      <body class="register" style="background-color: white;">
       <% }%>
+
     <%- include('./partials/header')  %> 
     <main class="register__main">
         <h1 class="text-center">Registrate</h1>
@@ -27,18 +25,6 @@
               <small class="form-text-error"><%= locals.errors && errors.name ? errors.name.msg :null %></small>
             </div>
           </div>
-          <div class="mb-3 row">
-            <label for="staticEmail" class="col-sm-2 col-form-label">Color</label>
-            <div class="col-sm-10">
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="color" value="<%= locals.old && old.color ? old.color : null %>">
-                    <option selected>Seleciona Color</option>
-                    <option value="orange">Naranja</option>
-                    <option value="green">Verde</option>
-                    <option value="red">Rojo</option>
-                  </select>
-            </div>
-           
-          
           <div class="mb-3 row">
             <label for="email" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
@@ -54,6 +40,17 @@
             </div>
           </div>
           <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Color</label>
+            <div class="col-sm-10">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="color" value="<%= locals.old && old.color ? old.color : null %>">
+                    <option value="" hidden selected>Seleccione un color...</option>
+                    <% colores.forEach(color => { %>
+                        <option <%= color === color && 'selected'%>  value="<%= color %>"><%= color %></option>
+                    <% }) %>
+                  </select>
+            </div>
+          </div>
+          <div class="mb-3 row">
             <label for="password" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
               <input type="password" class="form-control" id="password" name="password" value="<%= locals.old && old.password ? old.password : null %>" placeholder="1234">
@@ -65,13 +62,6 @@
             <div class="col-sm-10">
               <input type="password" class="form-control" id="password2" name="password2" value="<%= locals.old && old.password2 ? old.password2 : null %>">
               <small class="form-text-error"><%= locals.errors && errors.password2 ? errors.password2.msg :null %></small>
-            </div>
-          </div>
-          <div class="mb-3 row">
-            <label for="avatar" class="col-sm-2 col-form-label">Avatar</label>
-            <div class="col-sm-10">
-              <input type="file" class="form-control" id="avatar" name="avatar" value="<%= locals.old && old.avatar ? old.avatar : null %>" placeholder="1234">
-              <small class="form-text-error"><%= locals.errors && errors.avatar ? errors.avatar.msg :null %></small>
             </div>
           </div>
           <div class="d-flex justify-content-center">

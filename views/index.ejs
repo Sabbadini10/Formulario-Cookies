@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('./partials/head') %> 
-
-<% if (user.color == 'orange') { %>
+<% if (locals.user && user.color == 'naranja') { %>
     <body class="register" style="background-color: orange;">
-  <% } else if(user.color  == 'green'){ %>
+  <% } else if(locals.user && user.color  == 'verde'){ %>
      <body class="register" style="background-color: green;">
-   <% } else if(user.color == 'red'){ %>
+   <% } else if(locals.user && user.color == 'rojo'){ %>
     <body class="register" style="background-color: red;">
     <% } else {%>
-        <body class="register" style="background-color: blue;">
+        <body class="register" style="background-color: white;">
         <% }%>
-    <%- include('./partials/header') %> 
+<%- include('./partials/header') %> 
     <div class="text-center">
         <img class="img-fluid imagen-bienvenidos" src="../images/istockphoto-491141177-612x612.jpg"/>
       </div>

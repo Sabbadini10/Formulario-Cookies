@@ -27,7 +27,9 @@ module.exports = [
             min : 6, 
             max : 12
         }).withMessage('La contraseña debe tener entre 6 y 12 caracteres'),
-
+        check('edad')
+        .notEmpty().withMessage('La edad es obligatoria').bail()
+    ,
     body('password2')
         .notEmpty().withMessage('Debes confirmar la contraseña').bail()
         .custom((value,{req}) => {

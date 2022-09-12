@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <%- include('./partials/head',{
+        title : 'Gracias'
+    })  %> 
+
+
+<% if (locals.user && user.color == 'naranja') { %>
+  <body class="register" style="background-color: orange;">
+<% } else if(locals.user && user.color  == 'verde'){ %>
+   <body class="register" style="background-color: green;">
+ <% } else if(locals.user && user.color == 'rojo'){ %>
+  <body class="register" style="background-color: red;">
+  <% } else {%>
+      <body class="register" style="background-color: white;">
+      <% }%>
+    <%- include('./partials/header')  %> 
+
+    <main class="register__main">
+        <div class="register__main__section general__main__section">
+          <h1 class="text-center">Bienvenido <%= user.name %></h1>
+            <div class="mb-3 row">
+ <h1 class="col-sm-2 col-form-label">HOLA: <%= user.name %></h1>
+        </div>
+        <div class="mb-3 row">
+ <h1 class="col-sm-2 col-form-label">TU EMAIL ES: <%= user.email %></h1>
+        </div>
+        <div class="mb-3 row">
+ <h1 class="col-sm-2 col-form-label">TU EDAD ES: <%= user.edad %></h1>
+        </div>
+        <div class="mb-3 row">
+           <h1 class="col-sm-2 col-form-label">ELEGISTE EL COLOR: <%= user.color %></h1>
+        </div>
+         
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -9,15 +9,16 @@ module.exports = {
 register : (req,res) => {
     const user = loadUsers()
         return res.render('registro',{
-            user
+            user,
+           colores : require('../database/colores.json')
         })
     },
     processRegister : (req,res) => {
         const errors = validationResult(req);
-
+        const colores = require('../database/colores.json')
         if(errors.isEmpty()){
             const users = loadUsers();
-        const {name, email, edad, avatar, color, password, password2, recordarColor} = req.body;
+        const {name, email, edad, avatar, color, password, password2} = req.body;
            const newUser = {
                 id: users[users.length - 1] ? users[users.length - 1].id + 1 : 1,
                 name : name.trim(),
@@ -25,33 +26,25 @@ register : (req,res) => {
                 email : email.trim(),
                 edad,
                 password : bcryptjs.hashSync(password.trim(),10),
-                password2 : bcryptjs.hashSync(password2.trim(),10),
-                rol : 'user',
-                avatar : [`../images/avatar/${avatar}`] ? [`../images/avatar/${avatar}`] : [`../images/avatar/imagenDefault.jpg`]
+                password2 : null,
             
            }
-
-           req.session.backgroundColor = color;
-           res.locals.backgroundColor = req.session.backgroundColor;
-           
-           if(recordarColor){
-               res.cookie('backgroundColor', req.session.backgroundColor, { maxAge: 1000 * 60})
-           }
-    
+          
+	
            const usersModify = [...users, newUser];
     
            storeUsers(usersModify);
-           return res.redirect('/users/perfil')
+           return res.redirect('login')
         }else {
             return res.render('registro', {
                 errors : errors.mapped(),
-                colores : loadColores().sort(),
+                colores,
                 old : req.body
             })
         }
     },
     login : (req,res) => {
-        const user = loadUsers()
+        const user = loadUsers();
         return res.render('login', {
             user
         })
@@ -61,30 +54,29 @@ register : (req,res) => {
 
         if(errors.isEmpty()){
 
-            let {id, name, rol, avatar} = loadUsers().find(user => user.email === req.body.email);
+            let {id, name,color,email,edad} = loadUsers().find(user => user.email === req.body.email);
 
             req.session.userLogin = {
                 id,
                 name,
-                rol,
-                avatar
+                email,
+                edad,
+                color,
+        
             }
 
             if(req.body.remember){
                 res.cookie('formularioCookies',req.session.userLogin,{
                     maxAge : 1000 * 60
                 })
-            }
-            if(req.body.recordarColor){
-                res.cookie('formularioCookies',req.session.userLogin,{
-                    maxAge : 1000 * 60
-                })
-            }
-            
+            }  
 
-            return res.redirect('/users/perfil')
+            
+            return res.redirect('perfil')
         }else {
+            const user = loadUsers()
             return res.render('login',{
+                user,
                 errors : errors.mapped()
             })
         }
@@ -97,17 +89,18 @@ register : (req,res) => {
        
     })
 },
-    bienvenido: (req, res) => {
-
-        const {name, email, recordarColor, password, password2, edad, avatar} = req.body;
+    processPerfil: (req, res) => {
+        const {name, email, password, edad, color} = req.body;
 
         let usersModify = loadUsers().map(user => {
             if(user.id === +req.params.id){
                 return {
                     ...user,
                     ...req.body,
-                    recordarColor,
-                    avatar : req.file ? req.file.filename : req.session.userLogin.avatar
+                    edad,
+                    email,
+                    color,
+                    
                 }
             }
             return user
@@ -122,16 +115,24 @@ register : (req,res) => {
         req.session.userLogin = {
             ...req.session.userLogin,
             name,
-            recordarColor,
-            avatar : req.file ? req.file.filename : req.session.userLogin.avatar
+            color,
+            
+        
         }
 
+
         storeUsers(usersModify);
-        return res.redirect('/user/bienvenido')
-        
+        return res.redirect('form_color')
+
     },
+    form_color: (req, res) => {
+            return res.render('form_color', {
+                    user : req.session.userLogin,
+            })
+        },
     logout : (req,res) => {
+        res.clearCookie("formularioCookies"),
         req.session.destroy()
-        return res.redirect('/')
-    }
+        res.redirect("/")
+},
 }

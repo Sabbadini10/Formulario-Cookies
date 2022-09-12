@@ -1,15 +1,29 @@
 [
    {
       "id": 1,
-      "name": "Matias",
-      "color": "red",
-      "email": "matiassabbadini24@gmail.com",
-      "edad": "45",
-      "password": "$2a$10$I7DBZmKxc33OsBHg/5q8auWbgN2bDb/5KEtLLt2Q5QqOWwYo2ds6a",
-      "password2": "$2a$10$TPwZnq4jZ1yyY4A/T2lV0.TtSDCuQZBED5yg0yHjeO4QE1Eb91G.O",
-      "rol": "user",
-      "avatar": [
-         "../images/avatar/imagenDefault.jpg"
-      ]
+      "name": "Sabbadini",
+      "color": "verde",
+      "email": "racing@gmail.com",
+      "edad": "23",
+      "password": "$2a$10$kY5m/WxxblTP64nl6O/kxe6EfzBhkXSiJAEglZPf42rYujHvDeK22",
+      "password2": null
+   },
+   {
+      "id": 3,
+      "name": "carlos",
+      "color": "rojo",
+      "email": "racingracing@gmail.com",
+      "edad": "18",
+      "password": "$2a$10$zFbS2sVs7uD5tIDfPnhSLO1mWCbqW2YwHjCuP9p2qMjmL4tLH4hcO",
+      "password2": null
+   },
+   {
+      "id": 4,
+      "name": "fdgfgfdgfd",
+      "color": "naranja",
+      "email": "boca@gmail.com",
+      "edad": "18",
+      "password": "$2a$10$2O5/UNNcTtqrMR4aI83f9OjOtSvhUDRrbiQU.PcEIoZj/ERv6yVlO",
+      "password2": null
    }
 ]
